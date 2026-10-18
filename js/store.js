@@ -88,8 +88,6 @@ export const parts = {
 };
 
 // ---------- auth ----------
-const cleanUser = (u) => String(u || "").trim().toLowerCase();
-const validUser = (u) => /^[a-z0-9._-]{2,40}$/.test(u);
 
 export const auth = {
   startDemo() { safe.set(sessionStorage, MODE_KEY, "demo"); },
