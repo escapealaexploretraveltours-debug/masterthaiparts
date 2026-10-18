@@ -1,5 +1,7 @@
+import "./fx3d.js";
 import { SHOP } from "./config.js";
 import { auth, hasSupabase } from "./store.js";
+
 
 const $ = (id) => document.getElementById(id);
 
