@@ -35,7 +35,8 @@ $("loginForm").addEventListener("submit", async (e) => {
     if (r.error === "username") { $("user").value = ""; showError("Username not found."); }
     else { $("pass").value = ""; showError("Incorrect password."); }
   } catch (err) {
-    showError("Could not reach the server. Please try again.");
+        console.error(err);
+    showError("Login service error: " + (err.message || "please try again."));
   } finally {
     $("btn").disabled = !hasSupabase;
   }
