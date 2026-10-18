@@ -1,3 +1,4 @@
+import "./fx3d.js";
 import { CATEGORIES, SHOP } from "./config.js";
 import { auth, parts } from "./store.js";
 
