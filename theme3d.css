@@ -1,0 +1,92 @@
+/* theme3d.css — modern glass / 3D look. Loaded by js/fx3d.js after style.css, so it only overrides. */
+html{background:#05070c}
+body::before{background:linear-gradient(rgba(5,7,12,.78),rgba(5,7,12,.9))}
+::selection{background:rgba(74,109,240,.45)}
+
+/* ---------- floating navbar & sidebar ---------- */
+.navbar{top:12px;left:12px;right:12px;width:auto;height:68px;border-radius:18px;border:1px solid rgba(255,255,255,.1);overflow:hidden;
+  background:linear-gradient(120deg,rgba(18,22,34,.8),rgba(8,10,16,.8));box-shadow:0 18px 50px rgba(0,0,0,.45)}
+.navbar::after{left:22px;right:22px;bottom:0;border-radius:3px}
+.logo-img{width:48px;height:48px;transition:transform .9s cubic-bezier(.2,.8,.2,1)}
+.logo-img:hover{transform:rotate(360deg) scale(1.08)}
+.logo{background:linear-gradient(90deg,#fff 40%,#aab9ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.menu a.active,.sidebar a.active{color:#fff;background:linear-gradient(135deg,rgba(228,32,44,.28),rgba(36,71,199,.32));box-shadow:0 0 22px rgba(74,109,240,.28)}
+.menu a:hover,.sidebar a:hover{color:#fff;background:rgba(255,255,255,.1)}
+@media(min-width:861px){
+  .sidebar{left:12px;top:92px;bottom:12px;height:auto;width:170px;border-radius:18px;border:1px solid rgba(255,255,255,.1);
+    background:linear-gradient(170deg,rgba(18,22,34,.78),rgba(8,10,16,.78));box-shadow:0 18px 50px rgba(0,0,0,.4)}
+}
+
+/* ---------- headings, panels, stats ---------- */
+.page-head h1{background:linear-gradient(90deg,#fff 35%,#9db4ff);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 6px 24px rgba(74,109,240,.35))}
+.panel{border-radius:20px;background:linear-gradient(160deg,rgba(255,255,255,.075),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.1);
+  box-shadow:0 24px 60px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.08)}
+.stat{border-radius:18px;background:linear-gradient(160deg,rgba(255,255,255,.09),rgba(255,255,255,.025));box-shadow:0 20px 44px rgba(0,0,0,.35)}
+.stat .v{background:linear-gradient(120deg,#fff 30%,var(--c,var(--blue-l)));-webkit-background-clip:text;background-clip:text;color:transparent;font-size:2.4rem}
+.cat-card,.cn a{border-radius:16px;background:linear-gradient(160deg,rgba(255,255,255,.08),rgba(255,255,255,.02));box-shadow:0 14px 34px rgba(0,0,0,.3)}
+
+/* ---------- 3D tilt + glare ---------- */
+.stat,.cat-card,.cn a,.login-card,.profile{position:relative;transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));
+  transition:transform .18s ease-out,border-color .3s,box-shadow .3s,background-color .3s;will-change:transform}
+.cn a:hover,.cat-card:hover{transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateZ(14px);
+  box-shadow:0 30px 60px rgba(0,0,0,.5),0 0 40px rgba(74,109,240,.22)}
+.stat::after,.cat-card::after,.cn a::after,.login-card::after,.profile::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .25s;
+  background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.17),transparent 55%)}
+.stat:hover::after,.cat-card:hover::after,.cn a:hover::after,.login-card:hover::after,.profile:hover::after{opacity:1}
+
+/* ---------- entrance animation ---------- */
+@keyframes rise{from{opacity:0;transform:translateY(26px) rotateX(10deg) scale(.98)}to{opacity:1;transform:none}}
+.page-head,.panel,.stats>*,.cat-grid>*,.cn,.login-card,.hero-copy{animation:rise .7s cubic-bezier(.2,.8,.2,1) backwards}
+.panel{animation-delay:.08s}
+.stats>:nth-child(2),.cat-grid>:nth-child(2),.cn:nth-child(2){animation-delay:.07s}
+.stats>:nth-child(3),.cat-grid>:nth-child(3),.cn:nth-child(3){animation-delay:.14s}
+.stats>:nth-child(4),.cat-grid>:nth-child(4),.cn:nth-child(4){animation-delay:.21s}
+.cat-grid>:nth-child(5),.cn:nth-child(5){animation-delay:.28s}
+.cat-grid>:nth-child(6),.cn:nth-child(6){animation-delay:.35s}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}}
+
+/* ---------- tables ---------- */
+table{border-collapse:separate;border-spacing:0 6px}
+th{background:transparent;border:0}
+td{border:0;background:rgba(255,255,255,.035)}
+td:first-child{border-radius:10px 0 0 10px}
+td:last-child{border-radius:0 10px 10px 0}
+tbody tr:nth-child(even){background:none}
+tbody tr:hover{background:none}
+tbody tr:hover td{background:rgba(74,109,240,.14)}
+tfoot th{background:rgba(255,255,255,.06)}
+tfoot th:first-child{border-radius:10px 0 0 10px}
+tfoot th:last-child{border-radius:0 10px 10px 0}
+
+/* ---------- buttons & inputs ---------- */
+.add-part-button{background:linear-gradient(135deg,#0ea5e9,#2447c7);box-shadow:0 10px 26px rgba(36,71,199,.4)}
+.add-part-button:hover{background:linear-gradient(135deg,#27b4f5,#3558dd);box-shadow:0 14px 34px rgba(36,71,199,.55)}
+.btn-ghost{border-radius:10px;background:rgba(255,255,255,.04)}
+input[type=text],input[type=password],input[type=number],input[type=search]{border-radius:12px;background:rgba(0,0,0,.4)}
+
+/* ---------- login ---------- */
+.login-wrap{grid-template-columns:1fr minmax(360px,440px);gap:40px;padding-left:clamp(16px,6vw,90px);padding-right:clamp(16px,6vw,90px)}
+.hero-copy{align-self:end;justify-self:start;padding-bottom:5vh;max-width:420px}
+.hero-copy .kicker{font-family:ui-monospace,monospace;letter-spacing:3px;font-size:.78rem;color:var(--muted)}
+.hero-copy h2{font-family:var(--head);font-style:italic;font-weight:800;font-size:clamp(3.6rem,7vw,6.2rem);line-height:.95;letter-spacing:-1px;text-shadow:0 10px 40px rgba(0,0,0,.6)}
+.hero-copy .r{color:var(--red)}.hero-copy .w{color:#fff}.hero-copy .b{color:var(--blue-l)}
+.hero-copy p{display:flex;gap:8px;margin:10px 0 14px;font-family:var(--head);font-style:italic;font-weight:800;font-size:1.25rem;letter-spacing:2px}
+.hero-copy .t-r{background:var(--red);padding:1px 10px}.hero-copy .t-b{background:var(--blue);padding:1px 10px}
+.hero-copy small{color:var(--muted)}
+
+.login-card{background:linear-gradient(160deg,rgba(26,32,48,.8),rgba(10,13,22,.88));color:var(--text);border:1px solid rgba(255,255,255,.14);border-radius:22px;
+  backdrop-filter:blur(18px);box-shadow:0 40px 90px rgba(0,0,0,.6),0 0 70px rgba(36,71,199,.2),inset 0 1px 0 rgba(255,255,255,.08)}
+.login-card h1{color:#fff}
+.login-card label{color:var(--muted)}
+.login-card input[type=text],.login-card input[type=password]{background:rgba(0,0,0,.42);color:#fff;border:1px solid rgba(255,255,255,.2)}
+.login-card input[type=submit]{background:linear-gradient(135deg,var(--red),var(--red-d));box-shadow:0 12px 30px rgba(228,32,44,.38)}
+.login-card input[type=submit]:hover{background:linear-gradient(135deg,#ff3340,var(--red));box-shadow:0 16px 40px rgba(228,32,44,.55)}
+.login-card .divider{color:var(--muted)}
+.login-card .divider::before,.login-card .divider::after{background:rgba(255,255,255,.14)}
+.login-card .fine{color:var(--muted)}
+.btn-demo{border-radius:12px;box-shadow:0 12px 30px rgba(36,71,199,.4)}
+.setup-note{background:rgba(245,181,61,.12);color:var(--warn)}
+@media(max-width:900px){
+  .login-wrap{grid-template-columns:1fr;align-content:end}
+  .hero-copy{display:none}
+}
