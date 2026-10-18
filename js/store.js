@@ -102,19 +102,19 @@ export const auth = {
   },
 
   // Returns {ok:true} or {error:"username"|"password"} — same messages as the original login.php.
-  async login(username, password) {
-    const u = cleanUser(username);
-    if (!validUser(u)) return { error: "username" };
+    async login(username, password) {
+    const u = String(username || "").trim().toLowerCase();
+    if (!u || u.length > 254) return { error: "username" };
     const c = await client();
-    const { data: exists, error } = await c.rpc("username_exists", { u });
+    const { data: email, error } = await c.rpc("login_email", { u });
     if (error) throw error;
-    if (!exists) return { error: "username" };
-    const { error: e2 } = await c.auth.signInWithPassword({ email: `${u}@${EMAIL_DOMAIN}`, password });
+    if (!email) return { error: "username" };
+    const { error: e2 } = await c.auth.signInWithPassword({ email, password });
     if (e2) return { error: "password" };
     safe.del(sessionStorage, MODE_KEY);
     return { ok: true };
   },
-
+  
   async logout() {
     safe.del(sessionStorage, MODE_KEY);
     if (hasSupabase) await (await client()).auth.signOut();
