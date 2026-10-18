@@ -1,4 +1,4 @@
-import { SUPABASE_URL, SUPABASE_ANON_KEY, EMAIL_DOMAIN } from "./config.js";
+import { SUPABASE_URL, SUPABASE_ANON_KEY } from "./config.js";
 
 export const hasSupabase = Boolean(SUPABASE_URL && SUPABASE_ANON_KEY);
 
